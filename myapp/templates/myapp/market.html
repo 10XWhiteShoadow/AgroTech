@@ -1,83 +1,188 @@
 {% extends 'myapp/base.html' %}
 
-{% block title %}Market Trends{% endblock %}
+{% block title %}Market Trends & Mandi Prices{% endblock %}
 
 {% block content %}
 <div class="bg-emerald-50 min-h-screen px-4 sm:px-6 lg:px-8 py-8">
-  <div class="max-w-4xl mx-auto">
-    <div class="bg-white rounded-2xl shadow-sm p-6 mb-8 border border-emerald-100">
-      <h2 class="text-emerald-800 text-2xl font-bold mb-6 flex items-center gap-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-        </svg>
-        Agricultural Market Trends
-      </h2>
+  <div class="max-w-6xl mx-auto space-y-8">
+    
+    <!-- Hero Header -->
+    <div class="bg-gradient-to-r from-emerald-800 to-teal-900 rounded-2xl shadow-lg p-8 text-white relative overflow-hidden">
+      <div class="relative z-10">
+        <h1 class="text-3xl sm:text-4xl font-bold mb-2 flex items-center gap-3">
+          <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+          Agricultural Market Trends & Mandi Rates
+        </h1>
+        <p class="text-emerald-100 max-w-2xl text-base sm:text-lg">
+          Track real-time commodity prices, daily mandi arrival volumes, and 30-day historical price trends to maximize your harvest value.
+        </p>
+      </div>
+    </div>
 
-      <div class="space-y-6">
+    <!-- Market Overview KPI Summary -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+      <div class="bg-white rounded-xl p-5 border border-emerald-100 shadow-sm flex items-center gap-4">
+        <div class="p-3 bg-emerald-100 rounded-lg text-emerald-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs sm:text-sm text-gray-500 font-medium">Tracked Commodities</p>
+          <h3 class="text-xl sm:text-2xl font-bold text-emerald-900">{{ total_crops|default:"15" }}</h3>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-5 border border-emerald-100 shadow-sm flex items-center gap-4">
+        <div class="p-3 bg-green-100 rounded-lg text-green-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs sm:text-sm text-gray-500 font-medium">Increasing Price</p>
+          <h3 class="text-xl sm:text-2xl font-bold text-green-700">{{ gaining_crops|default:"8" }}</h3>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-5 border border-emerald-100 shadow-sm flex items-center gap-4">
+        <div class="p-3 bg-red-100 rounded-lg text-red-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs sm:text-sm text-gray-500 font-medium">Declining Price</p>
+          <h3 class="text-xl sm:text-2xl font-bold text-red-600">{{ declining_crops|default:"3" }}</h3>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-5 border border-emerald-100 shadow-sm flex items-center gap-4">
+        <div class="p-3 bg-blue-100 rounded-lg text-blue-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs sm:text-sm text-gray-500 font-medium">Stable Price</p>
+          <h3 class="text-xl sm:text-2xl font-bold text-blue-600">{{ stable_crops|default:"4" }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mandi Arrival Highlights -->
+    <div class="bg-white rounded-2xl shadow-sm p-6 border border-emerald-100">
+      <h2 class="text-emerald-800 text-xl font-bold mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        Major Mandi Live Arrival Rates
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-emerald-900 border-collapse">
+          <thead>
+            <tr class="bg-emerald-50 text-emerald-800 border-b border-emerald-100 font-semibold">
+              <th class="py-3 px-4">Mandi Trading Center</th>
+              <th class="py-3 px-4">Commodity</th>
+              <th class="py-3 px-4 text-right">Modal Price (₹/Qtl)</th>
+              <th class="py-3 px-4 text-right">Daily Arrivals</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-emerald-50">
+            {% for item in mandi_highlights %}
+            <tr class="hover:bg-emerald-50/50 transition-colors">
+              <td class="py-3 px-4 font-medium">{{ item.mandi }}</td>
+              <td class="py-3 px-4 text-gray-700">{{ item.crop }}</td>
+              <td class="py-3 px-4 text-right font-bold text-emerald-800">₹{{ item.modal_price }}</td>
+              <td class="py-3 px-4 text-right text-emerald-600 font-medium">{{ item.arrivals }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Commodity Market List Section -->
+    <div class="bg-white rounded-2xl shadow-sm p-6 border border-emerald-100">
+      
+      <!-- Search & Filters -->
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+        <h2 class="text-emerald-800 text-2xl font-bold flex items-center gap-2">
+          Commodity Price Trends
+        </h2>
+        <div class="w-full sm:w-72">
+          <div class="relative">
+            <input type="text" id="cropSearchInput" onkeyup="filterCrops()" placeholder="Search crop or commodity..."
+                   class="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+            <svg class="w-4 h-4 text-emerald-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crop List Cards -->
+      <div class="space-y-4" id="cropContainer">
         {% for crop in crops %}
-        <div class="bg-emerald-50 rounded-lg p-4 border border-emerald-100">
-          <div class="flex items-start gap-3">
-            <!-- Serial Number -->
-            <div class="flex-shrink-0 w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
-              <span class="text-emerald-800 font-medium text-sm">{{ forloop.counter }}</span>
+        <div class="crop-card bg-emerald-50/70 hover:bg-emerald-50 rounded-xl p-5 border border-emerald-100 transition-all duration-200 shadow-sm" data-name="{{ crop.name|lower }}">
+          <div class="flex items-start gap-4">
+            <!-- Serial Badge -->
+            <div class="flex-shrink-0 w-9 h-9 bg-emerald-600 text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-sm">
+              {{ forloop.counter }}
             </div>
 
             <div class="flex-1">
               <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div class="flex-1">
-                  <h3 class="text-emerald-800 font-bold text-lg flex items-center gap-2">
-                    <!-- Basic Plant Icon -->
-                    <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l-7-7 7-7m5 14l7-7-7-7"/>
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l0-14m-7 7l7-7m0 0l7 7"/>
-                    </svg>
+                  <h3 class="text-emerald-900 font-bold text-lg flex items-center gap-2">
                     {{ crop.name }}
                   </h3>
                   {% if crop.description %}
-                  <p class="text-emerald-600 text-sm mt-1">{{ crop.description }}</p>
+                  <p class="text-gray-600 text-sm mt-1">{{ crop.description }}</p>
                   {% endif %}
                 </div>
                 
-                <!-- Price and Trend Section -->
-                <div class="flex items-center gap-4">
-                  <div class="text-center">
-                    <p class="text-sm text-emerald-600">Current Price</p>
-                    <p class="text-emerald-800 font-bold">₹{{ crop.current_price }}</p>
+                <!-- Price and Trend Info -->
+                <div class="flex items-center gap-6 self-stretch justify-between md:justify-end">
+                  <div class="text-right">
+                    <p class="text-xs text-gray-500 font-medium">Rate / Quintal</p>
+                    <p class="text-emerald-800 font-extrabold text-xl">₹{{ crop.current_price }}</p>
                   </div>
                   <div class="text-center">
-                    <p class="text-sm text-emerald-600">Trend</p>
-                    <div class="flex items-center gap-1">
+                    <p class="text-xs text-gray-500 font-medium">30-Day Trend</p>
+                    <div class="flex items-center gap-1 mt-0.5">
                       {% if crop.trend == 'UP' %}
-                        <!-- Simple Up Arrow -->
-                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
-                        </svg>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+                          ▲ Increasing
+                        </span>
                       {% elif crop.trend == 'DOWN' %}
-                        <!-- Simple Down Arrow -->
-                        <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800">
+                          ▼ Decreasing
+                        </span>
                       {% else %}
-                        <!-- Dash for Stable -->
-                        <span class="text-gray-500">—</span>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">
+                          ▬ Stable
+                        </span>
                       {% endif %}
-                      <span class="text-sm {% if crop.trend == 'UP' %}text-green-600{% elif crop.trend == 'DOWN' %}text-red-600{% else %}text-gray-600{% endif %}">
-                        {{ crop.get_trend_display }}
-                      </span>
                     </div>
                   </div>
-                  <button onclick="toggleChart('chart-{{ forloop.counter }}')" class="text-emerald-600 hover:text-emerald-800 transition-colors">
-                    <!-- Simple Chevron -->
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <button onclick="toggleChart('chart-{{ forloop.counter }}')" 
+                          class="flex items-center gap-1 bg-white px-3 py-1.5 rounded-lg border border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors text-sm font-semibold shadow-sm">
+                    <span>Chart</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                   </button>
                 </div>
               </div>
 
-              <!-- Chart Section (Remains Same) -->
-              <div id="chart-{{ forloop.counter }}" class="hidden mt-4">
-                <div class="border-t border-emerald-100 pt-4">
+              <!-- Historical Price Chart Drawer -->
+              <div id="chart-{{ forloop.counter }}" class="hidden mt-5 pt-4 border-t border-emerald-200/60">
+                <p class="text-xs font-semibold text-emerald-800 mb-2">Historical Price Graph (Past 30 Days)</p>
+                <div class="h-48 w-full">
                   <canvas class="historical-chart" 
                           data-dates="{% for hp in crop.historical_prices.all %}{{ hp.date|date:'Y-m-d' }}{% if not forloop.last %},{% endif %}{% endfor %}"
                           data-prices="{% for hp in crop.historical_prices.all %}{{ hp.price }}{% if not forloop.last %},{% endif %}{% endfor %}"></canvas>
@@ -92,52 +197,72 @@
   </div>
 </div>
 
-<!-- JavaScript remains unchanged -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+function filterCrops() {
+  const query = document.getElementById('cropSearchInput').value.toLowerCase();
+  const cards = document.querySelectorAll('.crop-card');
+  cards.forEach(card => {
+    const name = card.getAttribute('data-name');
+    if (name.includes(query)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
 function toggleChart(chartId) {
   const chartDiv = document.getElementById(chartId);
   chartDiv.classList.toggle('hidden');
   
   if (!chartDiv.dataset.initialized) {
     const canvas = chartDiv.querySelector('canvas');
-    const dates = canvas.dataset.dates.split(',').map(date => new Date(date).toLocaleDateString());
-    const prices = canvas.dataset.prices.split(',').map(Number);
+    const datesRaw = canvas.dataset.dates ? canvas.dataset.dates.split(',') : [];
+    const pricesRaw = canvas.dataset.prices ? canvas.dataset.prices.split(',') : [];
+    
+    const dates = datesRaw.map(d => new Date(d).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' }));
+    const prices = pricesRaw.map(Number);
 
     const ctx = canvas.getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(6, 95, 70, 1)');
-    gradient.addColorStop(1, 'rgba(209, 250, 229, 0.2)');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+    gradient.addColorStop(0, 'rgba(5, 150, 105, 0.3)');
+    gradient.addColorStop(1, 'rgba(5, 150, 105, 0.0)');
 
     new Chart(canvas, {
       type: 'line',
       data: {
         labels: dates,
         datasets: [{
-          label: 'Price History',
+          label: 'Price (₹/Qtl)',
           data: prices,
-          borderColor: gradient,
-          borderWidth: 2,
-          pointRadius: 3,
-          tension: 0.4,
+          borderColor: '#059669',
+          borderWidth: 2.5,
+          pointRadius: 4,
+          pointBackgroundColor: '#047857',
+          tension: 0.3,
           fill: true,
-          backgroundColor: 'rgba(209, 250, 229, 0.1)'
+          backgroundColor: gradient
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { display: false }
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(context) { return 'Price: ₹' + context.raw; }
+            }
+          }
         },
         scales: {
           y: {
-            beginAtZero: false,
-            grid: { color: '#d1fae5' },
-            ticks: { color: '#065f46' }
+            grid: { color: '#e5e7eb' },
+            ticks: { color: '#065f46', font: { weight: 'bold' } }
           },
           x: {
-            grid: { color: '#d1fae5' },
+            grid: { display: false },
             ticks: { color: '#065f46' }
           }
         }

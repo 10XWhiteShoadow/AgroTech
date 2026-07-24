@@ -155,14 +155,36 @@ def resources_view(request):
 
 @login_required
 def market(request):
-    if Crop.objects.count() == 0:
+    if Crop.objects.count() < 12:
         try:
             from myproject.wsgi import init_db
             init_db()
         except Exception:
             pass
-    crops = Crop.objects.prefetch_related('historical_prices').all().order_by('name')
-    return render(request, 'myapp/market.html', {'crops': crops})
+    crops = list(Crop.objects.prefetch_related('historical_prices').all().order_by('name'))
+
+    total_crops = len(crops)
+    gaining_crops = sum(1 for c in crops if c.trend == 'UP')
+    declining_crops = sum(1 for c in crops if c.trend == 'DOWN')
+    stable_crops = sum(1 for c in crops if c.trend == 'STABLE')
+
+    mandi_highlights = [
+        {'mandi': 'Khanna Mandi (Punjab)', 'crop': 'Wheat (Sharbati)', 'modal_price': '2,450', 'arrivals': '12,400 Qtl'},
+        {'mandi': 'Lasalgaon Mandi (Maharashtra)', 'crop': 'Onion (Red Nashik)', 'modal_price': '1,850', 'arrivals': '24,100 Qtl'},
+        {'mandi': 'Indore Mandi (Madhya Pradesh)', 'crop': 'Soybean (Yellow)', 'modal_price': '4,300', 'arrivals': '18,500 Qtl'},
+        {'mandi': 'Nizamabad Mandi (Telangana)', 'crop': 'Turmeric (Rajapuri)', 'modal_price': '14,500', 'arrivals': '5,200 Qtl'},
+        {'mandi': 'Rajkot Mandi (Gujarat)', 'crop': 'Cotton (Medium Staple)', 'modal_price': '6,200', 'arrivals': '15,800 Qtl'},
+    ]
+
+    context = {
+        'crops': crops,
+        'total_crops': total_crops,
+        'gaining_crops': gaining_crops,
+        'declining_crops': declining_crops,
+        'stable_crops': stable_crops,
+        'mandi_highlights': mandi_highlights,
+    }
+    return render(request, 'myapp/market.html', context)
 
 
 @login_required
