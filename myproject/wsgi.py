@@ -28,6 +28,17 @@ def init_db():
         User = get_user_model()
         if not User.objects.filter(username='admin').exists():
             User.objects.create_superuser('admin', 'admin@example.com', 'admin123')
+
+        # Ensure default farm polygon and details records exist
+        from myapp.models import Polygon, Details
+        polygon, _ = Polygon.objects.get_or_create(
+            polygon_id='67969e9650f5a45f841b8c23',
+            defaults={'name': 'Main Farm Field'}
+        )
+        Details.objects.get_or_create(
+            polygon=polygon,
+            defaults={'api_key': ''}
+        )
     except Exception as e:
         print(f"Error initializing database: {e}")
 

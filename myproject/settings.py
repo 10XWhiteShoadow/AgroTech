@@ -61,8 +61,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 # API Keys — set these in your .env file (see .env.example)
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
-NEWS_API_KEY = os.getenv('NEWS_API_KEY', '')
-AGRO_API_KEY = os.getenv('AGRO_API_KEY', '')
+NEWS_API_KEY = os.getenv('NEWS_API_KEY', 'ffe32e11bcce44b8b1877ca0af6cbf35')
+AGRO_API_KEY = os.getenv('AGRO_API_KEY', 'b4dfb6aa45d5601e695f381d85217b11')
 
 ROOT_URLCONF = 'myproject.urls'
 

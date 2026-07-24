@@ -1,0 +1,19 @@
+# Environment variables & secrets
+.env
+*.env
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database
+*.sqlite3
+db.sqlite3-journal
+db.sqlite3-wal
+db.sqlite3-shm
+
+# Static & Media
+/staticfiles/
+/media/
