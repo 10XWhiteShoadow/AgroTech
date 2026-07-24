@@ -24,6 +24,11 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
+# Ensure Vercel domains are allowed
+for vercel_host in ['.vercel.app', 'agrotech-inky-five.vercel.app']:
+    if vercel_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(vercel_host)
+
 # Application definition
 
 INSTALLED_APPS = [
