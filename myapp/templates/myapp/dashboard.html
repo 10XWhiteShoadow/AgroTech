@@ -105,7 +105,7 @@
         <div class="space-y-4">
           {% for article in news %}
 <div class="flex items-center pb-4 border-b border-emerald-50">
-    <img src="{{ article.urlToImage|default:article.image|default:'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&auto=format&fit=crop' }}" alt="{{ article.title }}" class="w-16 h-16 object-cover rounded-lg mr-4">
+    <img src="{{ article.urlToImage|default:'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&auto=format&fit=crop' }}" alt="{{ article.title }}" class="w-16 h-16 object-cover rounded-lg mr-4">
     <div>
         <h4 class="font-medium text-emerald-900 line-clamp-1">{{ article.title }}</h4>
         <p class="text-sm text-gray-600 mt-1 line-clamp-2">{{ article.description }}</p>

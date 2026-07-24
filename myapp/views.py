@@ -89,17 +89,20 @@ def dashboard(request):
             {
                 'title': 'Government Announces New Micro-Irrigation Subsidy Scheme for Small Farmers',
                 'description': 'A new 80% subsidy program launched to help farmers install drip and sprinkler irrigation systems.',
-                'urlToImage': 'https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?w=800&auto=format&fit=crop'
+                'urlToImage': 'https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?w=800&auto=format&fit=crop',
+                'image': 'https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?w=800&auto=format&fit=crop'
             },
             {
                 'title': 'Precision Agriculture Adoption Surges by 35% in 2026',
                 'description': 'Smart soil sensors, drone crop monitoring, and automated weather forecasting are boosting crop yields.',
-                'urlToImage': 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&auto=format&fit=crop'
+                'urlToImage': 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&auto=format&fit=crop',
+                'image': 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&auto=format&fit=crop'
             },
             {
                 'title': 'Wheat & Rice Mandi Prices Hit Record High Amid Strong Global Demand',
                 'description': 'Favorable weather conditions and high international demand have driven wholesale market prices up.',
-                'urlToImage': 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&auto=format&fit=crop'
+                'urlToImage': 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&auto=format&fit=crop',
+                'image': 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&auto=format&fit=crop'
             }
         ]
 
@@ -269,10 +272,12 @@ def news(request):
                 raw_articles = response.json().get('articles', [])
                 for article in raw_articles:
                     if article.get('title') and article.get('title') != '[Removed]':
+                        img = article.get('urlToImage', '')
                         articles.append({
                             'title': article.get('title', ''),
                             'description': article.get('description', ''),
-                            'image': article.get('urlToImage', ''),
+                            'image': img,
+                            'urlToImage': img,
                             'published_at': article.get('publishedAt', ''),
                             'url': article.get('url', '#'),
                         })
