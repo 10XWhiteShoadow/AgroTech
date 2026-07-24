@@ -1,0 +1,172 @@
+{% extends 'myapp/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="bg-emerald-50 min-h-screen px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Hero Section with Carousel -->
+    <div class="mb-8 rounded-2xl overflow-hidden">
+      <div class="relative h-96">
+        <!-- Carousel container -->
+        <div class="carousel relative overflow-hidden h-full">
+          <!-- Carousel slides -->
+          <!-- Slide 1 -->
+          <div class="carousel-item absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-100">
+            <div class="relative h-full bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('https://media-hosting.imagekit.io//6b5344fd22f444d2/WhatsApp%20Image%202025-02-06%20at%2022.33.30_a1bbf03b.jpg?Expires=1833469576&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=PADuhXja3LDSdzkmI6l-wAzr4XavZ2jiaMeRfCJqIXSbmPo6AY8ydR99RFs8TLxbCnCniJAoWVavMYKGiBl2QFhTQ9ohsc1taF~H7uVlHX2yxRXmYex7MDBoSrCPJCeEpYpI1i7uqk0lAbpsXn3LzpQv4g43YGR1AoSPiE-7tRwq1~nIPOqLER6FMian3Uq2ubSqnnFUct7rR6fmHzs2RCq6Z6GfETXemyfUV9NN0XeKcnhpHL-apDBSyz6NeSJhw-4vNRTNQcQiRcXvXplQb6He8-ChkCPc9Ho7RBcrYniDodpSjp65ZwHAMukfOtKBWE~MthYSwj6YvUs-33m3jw__')">
+              <div class="absolute bottom-0 left-0 right-0 p-8 text-white bg-gradient-to-t from-emerald-900/60">
+                <h1 class="text-4xl font-bold mb-2">Empowering Farmers with Smart Agriculture Insights!</h1>
+                <p class="text-lg">Stay ahead in farming with real-time market trends, weather forecasts, and data-driven decisions.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="carousel-item absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+            <div class="relative h-full bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('https://media-hosting.imagekit.io//ff484b6067a44be7/WhatsApp%20Image%202025-02-06%20at%2022.48.37_25324311.jpg?Expires=1833470625&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=2QKZC1A7mKCM8EGP67Ny2kA6gykV-DGJqdlSG0bS84WzYFttFNd6hYaqJF8PpYKxME7PXx6GjyrmSi9NPKWg-0zj0ucziQORVwoKml1qxtd9YhKrd6rzFixzIa4FxwSAL2WkrTD-V6OEV7ah~UCpzudWdJjWJHBdo7io3rdzoiEvpxOoy6HOKPR3EsZ9mXP5D9ZYv6BEvSnbz6MXPa2yGtuNeK0ruMeX1p-isuRenLKgFQIjnpmcU0c51yMZVk3GreJ7sSmC-mllwpgKRzrL6H9m7FPWP~ugf13V8ahu2T7qBk9ft03UG8E7EJGg8num-nLrVN4eaTN1xEiXv4uiWw__')">
+              <div class="absolute bottom-0 left-0 right-0 p-8 text-white bg-gradient-to-t from-emerald-900/60">
+                <h1 class="text-4xl font-bold mb-2">Harvesting Success with Real-Time Data and Forecasts!</h1>
+                <p class="text-lg">Maximize crop yield and reduce resource waste with smart agricultural insights. </p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="carousel-item absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+            <div class="relative h-full bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('https://media-hosting.imagekit.io//9451e109631047be/WhatsApp%20Image%202025-02-06%20at%2022.33.29_9f5e877f.jpg?Expires=1833469461&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1KuLCcFU0d0gfQV-QV-LAQ4fEClUGhOY869pO3slhjBhq3c8QiTp9Od-5~IgDGtGuc4BqHtCs-S~EErQkihTGtfA8UKuZ~kqoB6N651bqUGhib0Qb7~o5HsWg5Sx5xNJ0BFUdLX3dfmbAqHRj7ZRwzZ0O-3uacjTZOkzhgouGG05A9lcdB~5DD38n~spgeims5LsoL17zpSue0vevv5NdsMf1oeA1GSKdh-Npl6M0GS7KQgU6~4QPp2~MiNLLAUeOsihXNTYc92201RcnFmcDp2L-tFxPC5jI90O3ddnYqlczPafUd~ymaPbKUa6UjrHtwm~Zeb3DS0VS1dGGNi~Xw__')">
+              <div class="absolute bottom-0 left-0 right-0 p-8 text-white bg-gradient-to-t from-emerald-900/60">
+                <h1 class="text-4xl font-bold mb-2">Innovate, Optimize, and Grow with AgroBrain!</h1>
+                <p class="text-lg">Utilize cutting-edge technology to make informed farming decisions and boost productivity.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 4 -->
+          <div class="carousel-item absolute w-full h-full transition-opacity duration-500 ease-in-out opacity-0">
+            <div class="relative h-full bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('https://media-hosting.imagekit.io//953f69f6ac7444a7/StockCake-Young%20plants%20growing_1738244167.jpg?Expires=1832853004&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=YFi9iB~Nd0hBBooTSbG1IRCCfuw555e5QIR7NBgkDJvzkHUaueJyUnrDqKGE4D8zCiJLvWdhJKpfRkn9q3vjcwIwcn3~dgFMP-2MBzWgDnmj0igpF7IqKUCQEep2mJZfnUXHv9l-1PLzfNI79hjtaoPvzCRXgfxZM2MaA2kFcxlLF1Hy4n07bfyhQH~zvORk5Eu2fu4~mTucKdNA7gijRHDm73HTfUG03Cmywv9AHZmzGxrAhBcqKN3zc7KSmdwckDJ-ji~WjYUz~aP2MZYVRBJlqIv~y2V7R0KG8vh-xZzsA5KQSRbWt05~rFm38Ksq-IuPL~CWLnacXrcDSMMB1A__')">
+              <div class="absolute bottom-0 left-0 right-0 p-8 text-white bg-gradient-to-t from-emerald-900/60">
+                <h1 class="text-4xl font-bold mb-2">Smart Farming for a Sustainable Future!</h1>
+                <p class="text-lg">Enhance efficiency and sustainability with data-backed agricultural solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Carousel controls -->
+        <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/30 text-white p-2 rounded-full hover:bg-white/50 transition-colors" id="prevBtn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/30 text-white p-2 rounded-full hover:bg-white/50 transition-colors" id="nextBtn">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Rest of the content remains the same -->
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      {% for service in services %}
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-emerald-100 hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-emerald-100 rounded-lg">
+            <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-emerald-800 font-semibold">{{ service.name }}</h3>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Weather & News Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Weather Card -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-emerald-100 hover:shadow-md transition-shadow">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="p-1 bg-emerald-100 rounded-lg">
+            <img id="current-weather-icon" class="h-8 w-8" src="" alt="Weather Icon">
+          </div>
+          <h3 class="text-emerald-800 font-semibold">Current Weather</h3>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="text-3xl font-bold text-emerald-600" id="current-temp">--°C</div>
+          <div class="text-gray-600" id="current-desc">Partly Cloudy</div>
+        </div>
+        <div class="mt-4 text-sm text-gray-500">
+          <span class="mr-4">💧 Humidity: <span id="current-humidity">--</span>%</span>
+          <span>💨 Wind: <span id="current-wind">--</span> km/h</span>
+        </div>
+      </div>
+
+      <!-- News Card -->
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-emerald-100 hover:shadow-md transition-shadow cursor-pointer" onclick="window.location.href='{% url 'news' %}'">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="p-3 bg-emerald-100 rounded-lg">
+            <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+            </svg>
+          </div>
+          <h3 class="text-emerald-800 font-semibold">Latest News</h3>
+        </div>
+        <div class="space-y-4">
+          {% for article in news %}
+<div class="flex items-center pb-4 border-b border-emerald-50">
+    <img src="{{ article.urlToImage|default:'https://media-hosting.imagekit.io//67f28409d7a848d5/WhatsApp%20Image%202025-01-29%20at%2019.06.25_3de84510.jpg?Expires=1833215583&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gHbtcohCx41vKJsk8v6gZTTsZwyC3YWElEPNzUoUpSbGw1MoFR6Stqhzt9v1DGf6RnY4P~uE-gbXVb3or0h~4w0ifXYTLsf4HJ3qB3qX9V4NwbuZhInntqpdUIfehbsBYTZL0jiLoCC4xrd4ez6qLNX20T~nE7Yp6qSc61qgxr-Hd5nhU6OwKMbpdG7t9jVXdoxvHAiC5yGFmcKSLExmOKx9tQPxiLOWURUtSS~GlWbP1eXeKvz9ajo7g9ZEoup6ld9f7H7B7naeb40gVgRuFmOJXzzeBQt99Z88ZVdTR65AUQ~TLaBpANZGoLm8wtRQh1iD9lC3yco56Ospp0FNLw__' }}" alt="{{ article.title }}" class="w-16 h-16 object-cover rounded-lg mr-4">
+    <div>
+        <h4 class="font-medium text-emerald-900">{{ article.title }}</h4>
+        <p class="text-sm text-gray-600 mt-1">{{ article.description }}</p>
+    </div>
+</div>
+{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const weatherData = {{ weather|safe }};
+  document.addEventListener('DOMContentLoaded', function() {
+    // Populate weather widget only if data is available
+    if (weatherData && Array.isArray(weatherData) && weatherData.length > 0) {
+      const currentWeather = weatherData[0];
+      const currentTemp = (currentWeather.main.temp - 273.15).toFixed(1); // Kelvin to Celsius
+      const currentWeatherIcon = currentWeather.weather[0].icon;
+      const currentWeatherDescription = currentWeather.weather[0].description;
+      const currentWind = currentWeather.wind.speed;
+      const currentHumidity = currentWeather.main.humidity;
+      document.getElementById('current-temp').textContent = `${currentTemp}°C`;
+      document.getElementById('current-desc').textContent = `${currentWeatherDescription}`;
+      document.getElementById('current-wind').textContent = `${currentWind}`;
+      document.getElementById('current-humidity').textContent = `${currentHumidity}`;
+      document.getElementById('current-weather-icon').src = `https://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png`;
+    } else {
+      document.getElementById('current-temp').textContent = 'N/A';
+      document.getElementById('current-desc').textContent = 'Weather data unavailable';
+    }
+    const carousel = document.querySelector('.carousel');
+    const items = carousel.querySelectorAll('.carousel-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      items.forEach((item, i) => {
+        item.style.opacity = i === index ? '1' : '0';
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % items.length;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      showSlide(currentIndex);
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Auto-advance slides every 7 seconds
+    setInterval(nextSlide, 7000);
+  });
+</script>
+{% endblock %}

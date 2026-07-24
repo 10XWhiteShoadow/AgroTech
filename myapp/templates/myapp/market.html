@@ -1,0 +1,150 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Market Trends{% endblock %}
+
+{% block content %}
+<div class="bg-emerald-50 min-h-screen px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-white rounded-2xl shadow-sm p-6 mb-8 border border-emerald-100">
+      <h2 class="text-emerald-800 text-2xl font-bold mb-6 flex items-center gap-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+        </svg>
+        Agricultural Market Trends
+      </h2>
+
+      <div class="space-y-6">
+        {% for crop in crops %}
+        <div class="bg-emerald-50 rounded-lg p-4 border border-emerald-100">
+          <div class="flex items-start gap-3">
+            <!-- Serial Number -->
+            <div class="flex-shrink-0 w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+              <span class="text-emerald-800 font-medium text-sm">{{ forloop.counter }}</span>
+            </div>
+
+            <div class="flex-1">
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="flex-1">
+                  <h3 class="text-emerald-800 font-bold text-lg flex items-center gap-2">
+                    <!-- Basic Plant Icon -->
+                    <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l-7-7 7-7m5 14l7-7-7-7"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l0-14m-7 7l7-7m0 0l7 7"/>
+                    </svg>
+                    {{ crop.name }}
+                  </h3>
+                  {% if crop.description %}
+                  <p class="text-emerald-600 text-sm mt-1">{{ crop.description }}</p>
+                  {% endif %}
+                </div>
+                
+                <!-- Price and Trend Section -->
+                <div class="flex items-center gap-4">
+                  <div class="text-center">
+                    <p class="text-sm text-emerald-600">Current Price</p>
+                    <p class="text-emerald-800 font-bold">₹{{ crop.current_price }}</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-sm text-emerald-600">Trend</p>
+                    <div class="flex items-center gap-1">
+                      {% if crop.trend == 'UP' %}
+                        <!-- Simple Up Arrow -->
+                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                        </svg>
+                      {% elif crop.trend == 'DOWN' %}
+                        <!-- Simple Down Arrow -->
+                        <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                      {% else %}
+                        <!-- Dash for Stable -->
+                        <span class="text-gray-500">—</span>
+                      {% endif %}
+                      <span class="text-sm {% if crop.trend == 'UP' %}text-green-600{% elif crop.trend == 'DOWN' %}text-red-600{% else %}text-gray-600{% endif %}">
+                        {{ crop.get_trend_display }}
+                      </span>
+                    </div>
+                  </div>
+                  <button onclick="toggleChart('chart-{{ forloop.counter }}')" class="text-emerald-600 hover:text-emerald-800 transition-colors">
+                    <!-- Simple Chevron -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Chart Section (Remains Same) -->
+              <div id="chart-{{ forloop.counter }}" class="hidden mt-4">
+                <div class="border-t border-emerald-100 pt-4">
+                  <canvas class="historical-chart" 
+                          data-dates="{% for hp in crop.historical_prices.all %}{{ hp.date|date:'Y-m-d' }}{% if not forloop.last %},{% endif %}{% endfor %}"
+                          data-prices="{% for hp in crop.historical_prices.all %}{{ hp.price }}{% if not forloop.last %},{% endif %}{% endfor %}"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript remains unchanged -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+function toggleChart(chartId) {
+  const chartDiv = document.getElementById(chartId);
+  chartDiv.classList.toggle('hidden');
+  
+  if (!chartDiv.dataset.initialized) {
+    const canvas = chartDiv.querySelector('canvas');
+    const dates = canvas.dataset.dates.split(',').map(date => new Date(date).toLocaleDateString());
+    const prices = canvas.dataset.prices.split(',').map(Number);
+
+    const ctx = canvas.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(6, 95, 70, 1)');
+    gradient.addColorStop(1, 'rgba(209, 250, 229, 0.2)');
+
+    new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [{
+          label: 'Price History',
+          data: prices,
+          borderColor: gradient,
+          borderWidth: 2,
+          pointRadius: 3,
+          tension: 0.4,
+          fill: true,
+          backgroundColor: 'rgba(209, 250, 229, 0.1)'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            grid: { color: '#d1fae5' },
+            ticks: { color: '#065f46' }
+          },
+          x: {
+            grid: { color: '#d1fae5' },
+            ticks: { color: '#065f46' }
+          }
+        }
+      }
+    });
+    chartDiv.dataset.initialized = true;
+  }
+}
+</script>
+{% endblock %}
