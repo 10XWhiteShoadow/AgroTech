@@ -1,4 +1,5 @@
 import os
+import tempfile
 from pathlib import Path
 try:
     from dotenv import load_dotenv
@@ -84,10 +85,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # Database
+IS_VERCEL = os.getenv('VERCEL') == '1' or os.getenv('VERCEL_ENV') is not None or not os.access(BASE_DIR, os.W_OK)
+
+if IS_VERCEL:
+    DB_PATH = Path(tempfile.gettempdir()) / 'db.sqlite3'
+else:
+    DB_PATH = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DB_PATH,
     }
 }
 
