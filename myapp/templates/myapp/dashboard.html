@@ -44,7 +44,7 @@
     grid-template-columns: 1fr 1fr;
     overflow: hidden;
   }
-  @media(max-width:900px){ .hero { grid-template-columns:1fr; } }
+  @media(max-width:900px){ .hero { grid-template-columns:1fr; min-height: auto; } }
 
   .hero-left {
     display: flex;
@@ -53,6 +53,9 @@
     padding: 6rem 4rem 4rem;
     z-index: 2;
     position: relative;
+  }
+  @media(max-width:768px){
+    .hero-left { padding: 5rem 1.25rem 2.5rem; }
   }
 
   .hero-eyebrow {
@@ -217,6 +220,7 @@
   .hfc-top { top: 20%; right: 8%; }
   .hfc-mid { top: 50%; right: 15%; transform: translateY(-50%); }
   .hfc-bot { bottom: 20%; right: 8%; }
+  @media(max-width:768px){ .hero-float-card { display: none; } }
 
   .hfc-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: .1em; }
   .hfc-val { font-size: 22px; font-weight: 800; color: var(--emerald-light); }
@@ -238,19 +242,19 @@
     background: rgba(5,150,105,0.08);
     border-top: 1px solid rgba(5,150,105,0.2);
     border-bottom: 1px solid rgba(5,150,105,0.2);
-    padding: 16px 2rem;
+    padding: 14px 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 1.25rem 2rem;
     flex-wrap: wrap;
     opacity: 0;
   }
   .stats-bar-item {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 14px; color: rgba(255,255,255,0.8);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: rgba(255,255,255,0.8);
   }
-  .stats-bar-item strong { color: var(--emerald-light); font-size: 16px; }
+  .stats-bar-item strong { color: var(--emerald-light); font-size: 15px; }
   .live-dot {
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--emerald-light);
@@ -258,7 +262,8 @@
   }
 
   /* ────── SECTION SHELL ────── */
-  .section { padding: 6rem 2rem; max-width: 1280px; margin: 0 auto; }
+  .section { padding: 4rem 1.25rem; max-width: 1280px; margin: 0 auto; }
+  @media(min-width:768px){ .section { padding: 6rem 2rem; } }
 
   .section-label {
     display: inline-flex; align-items: center; gap: 8px;
@@ -359,14 +364,15 @@
   .weather-main {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     margin-bottom: 2rem;
   }
+  @media(max-width:480px){ .weather-main { grid-template-columns: 1fr; gap: 1rem; } }
 
   .weather-temp-big {
     font-family: 'DM Serif Display', serif;
-    font-size: 6rem;
+    font-size: clamp(4rem, 10vw, 6rem);
     font-weight: 400;
     line-height: 1;
     color: var(--emerald-light);
@@ -720,7 +726,7 @@
 
   <!-- ── WEATHER + MANDI DUAL SECTION ── -->
   <div class="section">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start;">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
 
       <!-- Weather Widget -->
       <div class="weather-section reveal" id="weather-widget">
@@ -765,48 +771,50 @@
           <div class="section-label" style="opacity:1; margin-bottom:0;">🏪 Top Mandi Rates</div>
           <a href="{% url 'market' %}" style="font-size:12px; color:var(--emerald-light); text-decoration:none; font-weight:600;">View All →</a>
         </div>
-        <table class="mandi-table">
-          <thead>
-            <tr>
-              <th>Commodity</th>
-              <th>Mandi</th>
-              <th>₹/Qtl</th>
-              <th>Trend</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Wheat (Sharbati)</td>
-              <td class="mandi-arrivals">Khanna, Punjab</td>
-              <td class="mandi-price">₹2,450</td>
-              <td><span class="trend-up">▲ UP</span></td>
-            </tr>
-            <tr>
-              <td>Turmeric (Rajapuri)</td>
-              <td class="mandi-arrivals">Nizamabad, TG</td>
-              <td class="mandi-price">₹14,500</td>
-              <td><span class="trend-up">▲ UP</span></td>
-            </tr>
-            <tr>
-              <td>Soybean (Yellow)</td>
-              <td class="mandi-arrivals">Indore, MP</td>
-              <td class="mandi-price">₹4,300</td>
-              <td><span class="trend-down">▼ DOWN</span></td>
-            </tr>
-            <tr>
-              <td>Cotton (Med. Staple)</td>
-              <td class="mandi-arrivals">Rajkot, Gujarat</td>
-              <td class="mandi-price">₹6,200</td>
-              <td><span class="trend-up">▲ UP</span></td>
-            </tr>
-            <tr>
-              <td>Onion (Red Nashik)</td>
-              <td class="mandi-arrivals">Lasalgaon, MH</td>
-              <td class="mandi-price">₹1,850</td>
-              <td><span class="trend-down">▼ DOWN</span></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="overflow-x-auto w-full">
+          <table class="mandi-table w-full min-w-[400px]">
+            <thead>
+              <tr>
+                <th>Commodity</th>
+                <th>Mandi</th>
+                <th>₹/Qtl</th>
+                <th>Trend</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Wheat (Sharbati)</td>
+                <td class="mandi-arrivals">Khanna, Punjab</td>
+                <td class="mandi-price">₹2,450</td>
+                <td><span class="trend-up">▲ UP</span></td>
+              </tr>
+              <tr>
+                <td>Turmeric (Rajapuri)</td>
+                <td class="mandi-arrivals">Nizamabad, TG</td>
+                <td class="mandi-price">₹14,500</td>
+                <td><span class="trend-up">▲ UP</span></td>
+              </tr>
+              <tr>
+                <td>Soybean (Yellow)</td>
+                <td class="mandi-arrivals">Indore, MP</td>
+                <td class="mandi-price">₹4,300</td>
+                <td><span class="trend-down">▼ DOWN</span></td>
+              </tr>
+              <tr>
+                <td>Cotton (Med. Staple)</td>
+                <td class="mandi-arrivals">Rajkot, Gujarat</td>
+                <td class="mandi-price">₹6,200</td>
+                <td><span class="trend-up">▲ UP</span></td>
+              </tr>
+              <tr>
+                <td>Onion (Red Nashik)</td>
+                <td class="mandi-arrivals">Lasalgaon, MH</td>
+                <td class="mandi-price">₹1,850</td>
+                <td><span class="trend-down">▼ DOWN</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
