@@ -266,7 +266,6 @@
     font-size: 12px; font-weight: 700;
     letter-spacing: .12em; text-transform: uppercase;
     margin-bottom: 1rem;
-    opacity: 0;
   }
   .section-label::before {
     content:'';
@@ -280,7 +279,6 @@
     font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.15;
     margin-bottom: 1rem;
-    opacity: 0;
   }
   .section-title em {
     font-style: italic;
@@ -292,7 +290,6 @@
     max-width: 540px;
     line-height: 1.75;
     margin-bottom: 3rem;
-    opacity: 0;
   }
 
   /* ────── SERVICES CARDS ────── */
@@ -312,7 +309,6 @@
     cursor: pointer;
     text-decoration: none;
     color: white;
-    opacity: 0;
     transition: border-color .3s, box-shadow .3s, transform .3s;
     display: block;
   }
@@ -879,21 +875,23 @@ heroTl
 gsap.set('#he-title, #he-sub, #he-ctas, #he-stats, #he-eyebrow', { y: 40 });
 gsap.set(['#hfc-1','#hfc-2','#hfc-3'], { x: 60, opacity: 0 });
 
-// Scroll reveal for all .reveal elements
+// Scroll reveal for all .reveal elements — use fromTo so end state is always opacity:1
 gsap.utils.toArray('.reveal').forEach((el, i) => {
-  gsap.from(el, {
-    scrollTrigger: {
-      trigger: el,
-      start: 'top 85%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 0,
-    y: 40,
-    duration: .75,
-    ease: 'power3.out',
-    delay: (i % 4) * 0.08
-  });
-  gsap.to(el, { opacity:1 }); // ensure visible even without scroll
+  gsap.fromTo(el,
+    { opacity: 0, y: 36 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: .8,
+      ease: 'power3.out',
+      delay: (i % 4) * 0.07,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 88%',
+        once: true
+      }
+    }
+  );
 });
 
 // Floating card micro-animation
